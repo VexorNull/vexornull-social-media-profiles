@@ -38,9 +38,9 @@
         :root {
             --accent-glow-1: #6366f1;
             --accent-glow-2: #ec4899;
-            --card-bg: rgba(13, 17, 28, 0.75);
+            --card-bg: rgba(13, 17, 28, 0.72);
             --border-color: rgba(255, 255, 255, 0.08);
-            --hover-border: rgba(129, 140, 248, 0.5);
+            --hover-border: rgba(129, 140, 248, 0.6);
         }
 
         * {
@@ -52,7 +52,7 @@
         }
 
         body {
-            background-color: #02040a;
+            background-color: #010206;
             color: #f3f4f6;
             min-height: 100vh;
             min-height: 100dvh;
@@ -66,7 +66,7 @@
             transition: background-color 1.5s ease;
         }
 
-        /* Automatic Morphing Dynamic Mesh Background */
+        /* Ambient Morphing Background Engine */
         body::before {
             content: '';
             position: absolute;
@@ -75,20 +75,20 @@
             background-image: 
                 radial-gradient(circle at 15% 20%, var(--accent-glow-1) 0%, transparent 55%),
                 radial-gradient(circle at 85% 80%, var(--accent-glow-2) 0%, transparent 55%);
-            opacity: 0.18;
+            opacity: 0.16;
             z-index: -2;
             transition: background-image 2s ease-in-out;
         }
 
-        /* Ambient Glowing Morphing Orbs */
+        /* Glowing Floating Orbs */
         .ambient-glow {
             position: absolute;
             width: min(380px, 85vw);
             height: min(380px, 85vw);
             border-radius: 50%;
-            filter: blur(120px);
+            filter: blur(130px);
             z-index: -1;
-            opacity: 0.28;
+            opacity: 0.25;
             animation: driftOrb 12s infinite alternate ease-in-out;
             transition: background 2s ease-in-out;
         }
@@ -118,12 +118,12 @@
         }
 
         .profile-img-container {
-            width: clamp(120px, 30vw, 140px);
-            height: clamp(120px, 30vw, 140px);
+            width: clamp(125px, 30vw, 145px);
+            height: clamp(125px, 30vw, 145px);
             border-radius: 50%;
             padding: 4px;
             background: linear-gradient(135deg, var(--accent-glow-1), #a855f7, var(--accent-glow-2));
-            box-shadow: 0 0 40px rgba(168, 85, 247, 0.45);
+            box-shadow: 0 0 45px rgba(168, 85, 247, 0.45);
             margin-bottom: 16px;
             animation: pulseGlow 3s infinite alternate;
             position: relative;
@@ -164,7 +164,7 @@
 
         .profile-name {
             font-family: 'Outfit', sans-serif;
-            font-size: clamp(1.6rem, 5vw, 2rem);
+            font-size: clamp(1.6rem, 5vw, 2.1rem);
             font-weight: 700;
             margin-bottom: 4px;
             color: #ffffff;
@@ -217,14 +217,16 @@
             transition: all 0.3s ease;
             text-decoration: none;
             backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-action:hover {
-            background: rgba(99, 102, 241, 0.2);
+            background: rgba(99, 102, 241, 0.22);
             color: #ffffff;
             border-color: var(--hover-border);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.25);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
         }
 
         /* Live Search Bar */
@@ -249,8 +251,8 @@
 
         .search-box input:focus {
             border-color: #818cf8;
-            box-shadow: 0 0 15px rgba(129, 140, 248, 0.25);
-            background: rgba(17, 24, 39, 0.9);
+            box-shadow: 0 0 18px rgba(129, 140, 248, 0.3);
+            background: rgba(17, 24, 39, 0.92);
         }
 
         .search-box i {
@@ -283,7 +285,7 @@
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
             position: relative;
             overflow: hidden;
         }
@@ -292,7 +294,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
             transform: translateX(-100%);
             transition: 0.5s;
         }
@@ -305,7 +307,7 @@
             transform: translateY(-3px) scale(1.01);
             background: rgba(22, 30, 48, 0.95);
             border-color: var(--hover-border);
-            box-shadow: 0 8px 25px -5px rgba(99, 102, 241, 0.35);
+            box-shadow: 0 10px 30px -5px rgba(99, 102, 241, 0.4);
         }
 
         .link-content {
@@ -576,7 +578,7 @@
             }
         }
 
-        // Automatic Fluid Background Color Morphing Engine
+        // Automatic Fluid Background Color Morphing Engine (Seamless Cycle Every 4 Seconds)
         const themePalettes = [
             { c1: '#6366f1', c2: '#ec4899' }, // Indigo & Pink
             { c1: '#3b82f6', c2: '#10b981' }, // Blue & Emerald
@@ -593,8 +595,7 @@
             document.documentElement.style.setProperty('--accent-glow-2', current.c2);
         }
 
-        // Automatically cycles colors every 5 seconds seamlessly
-        setInterval(autoChangeBackground, 5000);
+        setInterval(autoChangeBackground, 4000);
     </script>
 
 </body>
