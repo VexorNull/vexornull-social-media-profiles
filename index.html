@@ -63,36 +63,37 @@
             padding: clamp(16px, 4vw, 24px);
             position: relative;
             overflow-x: hidden;
+            transition: background-color 1.5s ease;
         }
 
-        /* Dynamic Mesh Background */
+        /* Automatic Morphing Dynamic Mesh Background */
         body::before {
             content: '';
             position: absolute;
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(circle at 10% 15%, var(--accent-glow-1) 0%, transparent 50%),
-                radial-gradient(circle at 90% 85%, var(--accent-glow-2) 0%, transparent 50%);
-            opacity: 0.15;
+                radial-gradient(circle at 15% 20%, var(--accent-glow-1) 0%, transparent 55%),
+                radial-gradient(circle at 85% 80%, var(--accent-glow-2) 0%, transparent 55%);
+            opacity: 0.18;
             z-index: -2;
-            transition: background-image 0.5s ease;
+            transition: background-image 2s ease-in-out;
         }
 
-        /* Ambient Glowing Aura Orbs */
+        /* Ambient Glowing Morphing Orbs */
         .ambient-glow {
             position: absolute;
-            width: min(350px, 80vw);
-            height: min(350px, 80vw);
+            width: min(380px, 85vw);
+            height: min(380px, 85vw);
             border-radius: 50%;
-            filter: blur(100px);
+            filter: blur(120px);
             z-index: -1;
-            opacity: 0.22;
-            animation: driftOrb 10s infinite alternate ease-in-out;
-            transition: background 0.5s ease;
+            opacity: 0.28;
+            animation: driftOrb 12s infinite alternate ease-in-out;
+            transition: background 2s ease-in-out;
         }
-        .glow-1 { top: -80px; left: -80px; background: var(--accent-glow-1); }
-        .glow-2 { bottom: -80px; right: -80px; background: var(--accent-glow-2); animation-delay: 5s; }
+        .glow-1 { top: -100px; left: -100px; background: var(--accent-glow-1); }
+        .glow-2 { bottom: -100px; right: -100px; background: var(--accent-glow-2); animation-delay: 6s; }
 
         .container {
             width: 100%;
@@ -122,10 +123,11 @@
             border-radius: 50%;
             padding: 4px;
             background: linear-gradient(135deg, var(--accent-glow-1), #a855f7, var(--accent-glow-2));
-            box-shadow: 0 0 35px rgba(168, 85, 247, 0.4);
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.45);
             margin-bottom: 16px;
             animation: pulseGlow 3s infinite alternate;
             position: relative;
+            transition: background 2s ease-in-out;
         }
 
         .profile-img-container img {
@@ -199,7 +201,7 @@
 
         .btn-action {
             flex: 1;
-            max-width: 155px;
+            max-width: 180px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-color);
             color: #e2e8f0;
@@ -458,9 +460,9 @@
                 <button class="btn-action" onclick="copyProfileLink()">
                     <i class="fa-solid fa-share-nodes"></i> Share Hub
                 </button>
-                <button class="btn-action" onclick="switchTheme()">
-                    <i class="fa-solid fa-palette"></i> Theme
-                </button>
+                <a href="mailto:t4nv333r@gmail.com" class="btn-action">
+                    <i class="fa-solid fa-envelope"></i> Email Me
+                </a>
             </div>
         </div>
 
@@ -574,21 +576,25 @@
             }
         }
 
-        // Dynamic Accent Theme Switcher
-        const themes = [
-            { c1: '#6366f1', c2: '#ec4899' },
-            { c1: '#3b82f6', c2: '#10b981' },
-            { c1: '#8b5cf6', c2: '#f43f5e' },
-            { c1: '#f59e0b', c2: '#ef4444' }
+        // Automatic Fluid Background Color Morphing Engine
+        const themePalettes = [
+            { c1: '#6366f1', c2: '#ec4899' }, // Indigo & Pink
+            { c1: '#3b82f6', c2: '#10b981' }, // Blue & Emerald
+            { c1: '#8b5cf6', c2: '#f43f5e' }, // Purple & Rose
+            { c1: '#06b6d4', c2: '#6366f1' }, // Cyan & Indigo
+            { c1: '#f59e0b', c2: '#ef4444' }  // Amber & Red
         ];
-        let currentTheme = 0;
+        let colorIndex = 0;
 
-        function switchTheme() {
-            currentTheme = (currentTheme + 1) % themes.length;
-            let t = themes[currentTheme];
-            document.documentElement.style.setProperty('--accent-glow-1', t.c1);
-            document.documentElement.style.setProperty('--accent-glow-2', t.c2);
+        function autoChangeBackground() {
+            colorIndex = (colorIndex + 1) % themePalettes.length;
+            let current = themePalettes[colorIndex];
+            document.documentElement.style.setProperty('--accent-glow-1', current.c1);
+            document.documentElement.style.setProperty('--accent-glow-2', current.c2);
         }
+
+        // Automatically cycles colors every 5 seconds seamlessly
+        setInterval(autoChangeBackground, 5000);
     </script>
 
 </body>
