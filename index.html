@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Complete SEO & Open Graph Meta Tags -->
+    <title>Tanveer Hussain (@vexornull) - Social Media Links & Profile</title>
+    <meta name="description" content="Connect with Tanveer Hussain (vexornull) across all social media platforms including Facebook, Instagram, WhatsApp, YouTube, TikTok, and LinkedIn.">
+    <meta name="keywords" content="Tanveer Hussain, vexornull, social media links, links page, Tanveer Hussain portfolio, Facebook, Instagram, YouTube, TikTok, LinkedIn, WhatsApp">
+    <meta name="author" content="Tanveer Hussain">
+    
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="Tanveer Hussain (@vexornull) - Social Media Links">
+    <meta property="og:description" content="Official social media profile directory and links for Tanveer Hussain (@vexornull).">
+    <meta property="og:image" content="https://lh3.googleusercontent.com/d/1ITf_lIgMw0eT00co85vhmKdIJOYjVb_4">
+    <meta property="og:url" content="https://tanveer-web.blogspot.com/">
+    <meta property="og:type" content="profile">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tanveer Hussain (@vexornull) - Social Media Links">
+    <meta name="twitter:description" content="Connect with Tanveer Hussain (@vexornull) across all official channels.">
+    <meta name="twitter:image" content="https://lh3.googleusercontent.com/d/1ITf_lIgMw0eT00co85vhmKdIJOYjVb_4">
+
+    <!-- FontAwesome Icons & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e1b4b, #090d16);
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 550px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
+            margin: auto;
+        }
+
+        /* Profile Section with Circular Image */
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-img-container {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(45deg, #6366f1, #a855f7, #ec4899);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+            margin-bottom: 20px;
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            background-color: #1e293b;
+        }
+
+        .profile-name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .profile-handle {
+            font-size: 0.95rem;
+            color: #a5b4fc;
+            font-weight: 500;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        /* Social Links List */
+        .links-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 16px 20px;
+            border-radius: 14px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            background: rgba(51, 65, 85, 0.8);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.3);
+        }
+
+        .link-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .social-link i {
+            font-size: 1.4rem;
+            width: 35px;
+            text-align: center;
+        }
+
+        .social-link.facebook i { color: #1877f2; }
+        .social-link.instagram i { color: #e4405f; }
+        .social-link.whatsapp i { color: #25d366; }
+        .social-link.youtube i { color: #ff0000; }
+        .social-link.tiktok i { color: #69c4f0; }
+        .social-link.linkedin i { color: #0a66c2; }
+
+        .link-title {
+            font-size: 1.05rem;
+        }
+
+        .link-arrow {
+            color: #64748b;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover .link-arrow {
+            transform: translateX(4px);
+            color: #ffffff;
+        }
+
+        /* Footer Credit */
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            padding: 15px;
+        }
+
+        footer a {
+            color: #818cf8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Profile Header -->
+        <div class="profile-card">
+            <div class="profile-img-container">
+                <img src="https://lh3.googleusercontent.com/d/1ITf_lIgMw0eT00co85vhmKdIJOYjVb_4" alt="Tanveer Hussain">
+            </div>
+            <h1 class="profile-name">Tanveer Hussain</h1>
+            <span class="profile-handle">@vexornull</span>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="links-list">
+            <a href="https://facebook.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                <div class="link-content">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <span class="link-title">Facebook</span>
+                </div>
+                <i class="fa-solid fa-chevron-right link-arrow"></i>
+            </a>
+
+            <a href="https://instagram.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+                <div class="link-content">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span class="link-title">Instagram</span>
+                </div>
+                <i class="fa-solid fa-chevron-right link-arrow"></i>
+            </a>
+
+            <a href="https://wa.me/vexornull" target="_blank" rel="noopener noreferrer" class="social-link whatsapp">
+                <div class="link-content">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span class="link-title">WhatsApp</span>
+                </div>
+                <i class="fa-solid fa-chevron-right link-arrow"></i>
+            </a>
+
+            <a href="https://youtube.com/@vexornull" target="_blank" rel="noopener noreferrer" class="social-link youtube">
+                <div class="link-content">
+                    <i class="fa-brands fa-youtube"></i>
+                    <span class="link-title">YouTube</span>
+                </div>
+                <i class="fa-solid fa-chevron-right link-arrow"></i>
+            </a>
+
+            <a href="https://tiktok.com/@vexornull" target="_blank" rel="noopener noreferrer" class="social-link tiktok">
+                <div class="link-content">
+                    <i class="fa-brands fa-tiktok"></i>
+                    <span class="link-title">TikTok</span>
+                </div>
+                <i class="fa-solid fa-chevron-right link-arrow"></i>
+            </a>
+
+            <a href="https://linkedin.com/in/vexornull" target="_blank" rel="noopener noreferrer" class="social-link linkedin">
+                <div class="link-content">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                    <span class="link-title">LinkedIn</span>
+                </div>
+                <i class="fa-solid fa-chevron-right link-arrow"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer Credit -->
+    <footer>
+        Created by <a href="https://tanveer-web.blogspot.com/" target="_blank" rel="noopener noreferrer">Tanveer Hussain</a>
+    </footer>
+
+</body>
+</html>
