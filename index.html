@@ -8,13 +8,13 @@
     <link rel="icon" type="image/gif" href="https://vexornull.github.io/favicon/favicon.gif">
     
     <!-- Complete SEO & Open Graph Meta Tags -->
-    <title>Tanveer Hussain (@vexornull) - Ultimate Social Hub & Portfolio</title>
+    <title>Tanveer Hussain (@vexornull) - Cyber Social Hub & Portfolio</title>
     <meta name="description" content="Connect with Tanveer Hussain (vexornull) across all official social media platforms, channels, and developer networks.">
     <meta name="keywords" content="Tanveer Hussain, vexornull, social links, portfolio, Facebook, Instagram, YouTube, TikTok, LinkedIn, WhatsApp">
     <meta name="author" content="Tanveer Hussain">
     
     <!-- Open Graph for Social Sharing -->
-    <meta property="og:title" content="Tanveer Hussain (@vexornull) - Social Hub">
+    <meta property="og:title" content="Tanveer Hussain (@vexornull) - Cyber Social Hub">
     <meta property="og:description" content="Official social media profile directory and digital hub for Tanveer Hussain (@vexornull).">
     <meta property="og:image" content="https://lh3.googleusercontent.com/d/1ITf_lIgMw0eT00co85vhmKdIJOYjVb_4">
     <meta property="og:url" content="https://tanveer-web.blogspot.com/">
@@ -22,28 +22,36 @@
     
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tanveer Hussain (@vexornull) - Social Hub">
+    <meta name="twitter:title" content="Tanveer Hussain (@vexornull) - Cyber Social Hub">
     <meta name="twitter:description" content="Connect with Tanveer Hussain (@vexornull) across all official channels.">
     <meta name="twitter:image" content="https://lh3.googleusercontent.com/d/1ITf_lIgMw0eT00co85vhmKdIJOYjVb_4">
 
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Ultra-Modern Font Upgrades: Outfit & Inter -->
+    <!-- Ultra-Modern Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --accent-glow-1: #6366f1;
+            --accent-glow-2: #ec4899;
+            --card-bg: rgba(13, 17, 28, 0.75);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --hover-border: rgba(129, 140, 248, 0.5);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif; /* Clean tech typography */
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: #030712;
+            background-color: #02040a;
             color: #f3f4f6;
             min-height: 100vh;
             display: flex;
@@ -55,39 +63,42 @@
             overflow-x: hidden;
         }
 
-        /* Modern Mesh Cyber Background */
+        /* Dynamic Mesh Background */
         body::before {
             content: '';
             position: absolute;
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 45%),
-                radial-gradient(circle at 85% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 45%);
+                radial-gradient(circle at 10% 15%, var(--accent-glow-1) 0%, transparent 50%),
+                radial-gradient(circle at 90% 85%, var(--accent-glow-2) 0%, transparent 50%);
+            opacity: 0.15;
             z-index: -2;
+            transition: background-image 0.5s ease;
         }
 
         /* Ambient Glowing Aura Orbs */
         .ambient-glow {
             position: absolute;
-            width: 320px;
-            height: 320px;
+            width: 350px;
+            height: 350px;
             border-radius: 50%;
-            filter: blur(100px);
+            filter: blur(110px);
             z-index: -1;
-            opacity: 0.22;
-            animation: driftOrb 12s infinite alternate ease-in-out;
+            opacity: 0.25;
+            animation: driftOrb 10s infinite alternate ease-in-out;
+            transition: background 0.5s ease;
         }
-        .glow-1 { top: -80px; left: -80px; background: #6366f1; }
-        .glow-2 { bottom: -80px; right: -80px; background: #a855f7; animation-delay: 6s; }
+        .glow-1 { top: -100px; left: -100px; background: var(--accent-glow-1); }
+        .glow-2 { bottom: -100px; right: -100px; background: var(--accent-glow-2); animation-delay: 5s; }
 
         .container {
             width: 100%;
-            max-width: 520px;
+            max-width: 530px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 25px 15px;
+            padding: 30px 15px;
             margin: auto;
             z-index: 1;
             animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -104,12 +115,12 @@
         }
 
         .profile-img-container {
-            width: 135px;
-            height: 135px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             padding: 4px;
-            background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
-            box-shadow: 0 0 35px rgba(168, 85, 247, 0.4);
+            background: linear-gradient(135deg, var(--accent-glow-1), #a855f7, var(--accent-glow-2));
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.45);
             margin-bottom: 18px;
             animation: pulseGlow 3s infinite alternate;
             position: relative;
@@ -120,7 +131,7 @@
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
-            background-color: #0b0f19;
+            background-color: #07090f;
         }
 
         .status-badge {
@@ -148,8 +159,8 @@
         }
 
         .profile-name {
-            font-family: 'Outfit', sans-serif; /* High-end geometric font */
-            font-size: 2rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.1rem;
             font-weight: 700;
             margin-bottom: 4px;
             color: #ffffff;
@@ -178,7 +189,7 @@
         /* Action Buttons */
         .action-buttons {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             width: 100%;
             justify-content: center;
             margin-bottom: 18px;
@@ -188,7 +199,7 @@
             flex: 1;
             max-width: 160px;
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
             color: #e2e8f0;
             padding: 10px 14px;
             border-radius: 12px;
@@ -205,11 +216,11 @@
         }
 
         .btn-action:hover {
-            background: rgba(99, 102, 241, 0.18);
+            background: rgba(99, 102, 241, 0.2);
             color: #ffffff;
-            border-color: rgba(99, 102, 241, 0.4);
+            border-color: var(--hover-border);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.25);
         }
 
         /* Live Search Bar */
@@ -221,8 +232,8 @@
 
         .search-box input {
             width: 100%;
-            background: rgba(11, 15, 25, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             padding: 12px 16px 12px 42px;
             border-radius: 14px;
             color: #fff;
@@ -234,7 +245,7 @@
 
         .search-box input:focus {
             border-color: #818cf8;
-            box-shadow: 0 0 15px rgba(129, 140, 248, 0.2);
+            box-shadow: 0 0 15px rgba(129, 140, 248, 0.25);
             background: rgba(17, 24, 39, 0.9);
         }
 
@@ -259,9 +270,9 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(11, 15, 25, 0.75);
+            background: var(--card-bg);
             backdrop-filter: blur(14px);
-            border: 1px solid rgba(255, 255, 255, 0.07);
+            border: 1px solid var(--border-color);
             padding: 16px 20px;
             border-radius: 16px;
             color: #ffffff;
@@ -277,7 +288,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
             transform: translateX(-100%);
             transition: 0.5s;
         }
@@ -288,8 +299,8 @@
 
         .social-link:hover {
             transform: translateY(-4px) scale(1.01);
-            background: rgba(17, 24, 39, 0.95);
-            border-color: rgba(129, 140, 248, 0.45);
+            background: rgba(22, 30, 48, 0.95);
+            border-color: var(--hover-border);
             box-shadow: 0 10px 30px -5px rgba(99, 102, 241, 0.35);
         }
 
@@ -372,7 +383,7 @@
         /* Toast Alert Notification */
         .toast {
             visibility: hidden;
-            background: #111827;
+            background: #0d111c;
             color: #fff;
             text-align: center;
             border-radius: 12px;
@@ -445,9 +456,9 @@
                 <button class="btn-action" onclick="copyProfileLink()">
                     <i class="fa-solid fa-share-nodes"></i> Share Hub
                 </button>
-                <a href="mailto:t4nv333r@gmail.com" class="btn-action">
-                    <i class="fa-solid fa-envelope"></i> Email Me
-                </a>
+                <button class="btn-action" onclick="switchTheme()">
+                    <i class="fa-solid fa-palette"></i> Theme
+                </button>
             </div>
         </div>
 
@@ -559,6 +570,22 @@
                     links[i].style.display = "none";
                 }
             }
+        }
+
+        // Dynamic Accent Theme Switcher
+        const themes = [
+            { c1: '#6366f1', c2: '#ec4899' },
+            { c1: '#3b82f6', c2: '#10b981' },
+            { c1: '#8b5cf6', c2: '#f43f5e' },
+            { c1: '#f59e0b', c2: '#ef4444' }
+        ];
+        let currentTheme = 0;
+
+        function switchTheme() {
+            currentTheme = (currentTheme + 1) % themes.length;
+            let t = themes[currentTheme];
+            document.documentElement.style.setProperty('--accent-glow-1', t.c1);
+            document.documentElement.style.setProperty('--accent-glow-2', t.c2);
         }
     </script>
 
