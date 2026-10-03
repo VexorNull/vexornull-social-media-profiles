@@ -1,5 +1,14 @@
-// Real-time Clock on Telemetry Bar
-function updateLiveClock() {
+// Interactive Mouse Spotlight Tracker
+document.addEventListener('mousemove', (e) => {
+    const spotlight = document.getElementById('mouseSpotlight');
+    if (spotlight) {
+        spotlight.style.left = `${e.clientX}px`;
+        spotlight.style.top = `${e.clientY}px`;
+    }
+});
+
+// Real-time Clock & Dynamic Greeting & Ping Simulator
+function updateTelemetry() {
     const now = new Date();
     const timeString = now.toTimeString().split(' ')[0];
     const clockEl = document.getElementById('liveClock');
@@ -18,9 +27,16 @@ function updateLiveClock() {
     if (greetingEl) {
         greetingEl.textContent = greeting;
     }
+
+    // Randomize ping slightly for realistic infrastructure telemetry
+    const pingEl = document.getElementById('pingRate');
+    if (pingEl && Math.random() > 0.7) {
+        const randomPing = Math.floor(Math.random() * 8) + 10;
+        pingEl.textContent = `${randomPing}ms`;
+    }
 }
-setInterval(updateLiveClock, 1000);
-updateLiveClock();
+setInterval(updateTelemetry, 1000);
+updateTelemetry();
 
 // Copy Profile Link Handler
 function copyProfileLink() {
@@ -66,7 +82,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Toggle Ambient Animation Effects
+// Toggle Matrix Grid Rotation Engine
 let fxActive = true;
 function toggleEffects() {
     fxActive = !fxActive;
@@ -74,11 +90,13 @@ function toggleEffects() {
     const icon = document.getElementById('fxIcon');
     
     if (fxActive) {
+        grid.style.animationPlayState = "running";
         grid.style.opacity = "1";
-        icon.className = "fa-solid fa-wand-magic-sparkles";
+        icon.className = "fa-solid fa-cube";
     } else {
-        grid.style.opacity = "0.2";
-        icon.className = "fa-solid fa-wand-magic";
+        grid.style.animationPlayState = "paused";
+        grid.style.opacity = "0.25";
+        icon.className = "fa-solid fa-cube fa-fade";
     }
 }
 
