@@ -1,43 +1,43 @@
-// Copy Profile Link Script
+// Copy profile link handler with clean feedback
 function copyProfileLink() {
-    navigator.clipboard.writeText(window.location.href);
+    navigator.clipboard.writeText(window.location.href).then(() => {
+        showToast();
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+    });
+}
+
+// Toast Notification Controller
+function showToast() {
     const toast = document.getElementById("toast");
-    toast.classList.add("show");
-    setTimeout(() => { 
-        toast.classList.remove("show"); 
+    toast.className = "toast show";
+    setTimeout(() => {
+        toast.className = toast.className.replace("show", "");
     }, 3000);
 }
 
-// Live Search / Filter Script
+// Live Filter for Social Platforms & Developer Links
 function filterLinks() {
-    let input = document.getElementById('searchInput').value.toLowerCase();
-    let links = document.getElementById('linksList').getElementsByClassName('social-link');
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const linksList = document.getElementById('linksList');
+    const links = linksList.getElementsByClassName('social-link');
 
     for (let i = 0; i < links.length; i++) {
-        let name = links[i].getAttribute('data-name');
-        if (name.includes(input)) {
-            links[i].style.display = "flex";
+        const title = links[i].getAttribute('data-name');
+        if (title.indexOf(filter) > -1) {
+            links[i].style.display = "";
         } else {
             links[i].style.display = "none";
         }
     }
 }
 
-// Chrome-Safe Background Transition Engine
-const themePalettes = [
-    { c1: '#6366f1', c2: '#ec4899' }, 
-    { c1: '#3b82f6', c2: '#10b981' }, 
-    { c1: '#8b5cf6', c2: '#f43f5e' }, 
-    { c1: '#06b6d4', c2: '#6366f1' }, 
-    { c1: '#f59e0b', c2: '#ef4444' }  
-];
-let colorIndex = 0;
-
-function autoChangeBackground() {
-    colorIndex = (colorIndex + 1) % themePalettes.length;
-    let current = themePalettes[colorIndex];
-    document.documentElement.style.setProperty('--accent-1', current.c1);
-    document.documentElement.style.setProperty('--accent-2', current.c2);
-}
-
-setInterval(autoChangeBackground, 5000);
+// Keyboard shortcut: Press '/' anywhere to focus search
+document.addEventListener('keydown', function(event) {
+    if (event.key === '/' && document.activeElement.tagName !== 'INPUT') {
+        event.preventDefault();
+        const searchInput = document.getElementById('searchInput');
+        searchInput.focus();
+    }
+});
