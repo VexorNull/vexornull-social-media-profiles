@@ -73,11 +73,11 @@
 </head>
 <body>
 
-    <!-- Stable Chrome-Optimized Background Layers -->
+    <!-- Cyber Background Layers (Chrome Stable) -->
     <div class="bg-gradient-layer" id="bgLayer"></div>
+    <div class="cyber-grid"></div>
     <div class="ambient-glow glow-1"></div>
     <div class="ambient-glow glow-2"></div>
-    <div class="ambient-glow glow-3"></div>
 
     <div class="container">
         <!-- Profile Header Component -->
@@ -87,7 +87,7 @@
             </div>
             
             <div class="status-badge">
-                <span class="status-dot"></span> Online & Verified Hub
+                <span class="status-dot"></span> <span id="statusText">System Online • Verified Hub</span>
             </div>
 
             <h1 class="profile-name">Tanveer Hussain</h1>
@@ -110,7 +110,8 @@
         <!-- Real-time Link Search Bar -->
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Search platforms or code..." onkeyup="filterLinks()">
+            <input type="text" id="searchInput" placeholder="Search platforms (Press '/' to focus)..." onkeyup="filterLinks()">
+            <span class="search-shortcut">/</span>
         </div>
 
         <!-- Social Media Links Directory -->
@@ -121,7 +122,7 @@
                     <span class="link-title">GitHub</span>
                 </div>
                 <div class="link-right">
-                    <span class="badge-action">Repositories</span>
+                    <span class="badge-action">Codebase</span>
                     <i class="fa-solid fa-chevron-right link-arrow"></i>
                 </div>
             </a>
@@ -165,7 +166,7 @@
                     <span class="link-title">WhatsApp</span>
                 </div>
                 <div class="link-right">
-                    <span class="badge-action">Chat</span>
+                    <span class="badge-action">Direct Chat</span>
                     <i class="fa-solid fa-chevron-right link-arrow"></i>
                 </div>
             </a>
@@ -199,11 +200,10 @@
         Designed & Built by <a href="https://Instagram.com/vexornull" target="_blank" rel="noopener noreferrer">Tanveer Hussain</a>
     </footer>
 
-    <!-- Toast Notification Message -->
-    <div id="toast" class="toast">✨ Profile link copied to clipboard successfully!</div>
+    <!-- Toast Alert Notification -->
+    <div id="toast" class="toast">✨ Hub profile link copied to clipboard!</div>
 
     <!-- Linked External JavaScript File -->
     <script src="script.js"></script>
-
 </body>
 </html>
