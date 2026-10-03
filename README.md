@@ -48,17 +48,6 @@
 
 ---
 
-## 📂 Project Structure
-
-vexornull-social-media-profiles/
-├── assets/
-│   └── demo.png     # Application preview screenshot
-├── index.html       # Primary entry point, meta tags, and structured data schema
-├── style.css        # Cyber theme styling, keyframes, and glass-morphism tokens
-└── script.js        # Momentum grid loop, spotlight listener, telemetry clock, search filters, and avatar easter eggs
-
----
-
 ## 🚀 Local Installation & Setup
 
 If you want to clone and run or test this project locally on your machine, follow these simple steps:
