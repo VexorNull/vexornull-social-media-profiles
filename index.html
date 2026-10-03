@@ -20,7 +20,7 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://vexornull-social-media-profiles.vercel.app">
 
-    <!-- Open Graph / Facebook / LinkedIn SEO Meta Tags -->
+    <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://vexornull-social-media-profiles.vercel.app">
     <meta property="og:title" content="Tanveer Hussain (@vexornull) - Cyber Social Hub">
@@ -28,14 +28,14 @@
     <meta property="og:image" content="https://lh3.googleusercontent.com/d/1ITf_lIgMw0eT00co85vhmKdIJOYjVb_4">
     <meta property="profile:username" content="vexornull">
 
-    <!-- Twitter Card SEO Meta Tags -->
+    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://vexornull-social-media-profiles.vercel.app">
     <meta name="twitter:title" content="Tanveer Hussain (@vexornull) - Cyber Social Hub">
     <meta name="twitter:description" content="Connect with Tanveer Hussain (@vexornull) across all official channels.">
     <meta name="twitter:image" content="https://lh3.googleusercontent.com/d/1ITf_lIgMw0eT00co85vhmKdIJOYjVb_4">
 
-    <!-- Schema.org Structured Data for Google SEO -->
+    <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -60,30 +60,38 @@
     }
     </script>
 
-    <!-- FontAwesome Icons -->
+    <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- Linked External CSS File -->
+    <!-- Linked CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Cyber Background Layers (Chrome Stable) -->
+    <!-- Cyber Background Layers & RGB Grid -->
     <div class="bg-gradient-layer" id="bgLayer"></div>
     <div class="cyber-grid"></div>
     <div class="ambient-glow glow-1"></div>
     <div class="ambient-glow glow-2"></div>
 
+    <!-- Floating Top Telemetry Bar -->
+    <div class="telemetry-bar">
+        <span class="tele-item"><i class="fa-solid fa-terminal"></i> v2.6.0-stable</span>
+        <span class="tele-item" id="liveClock">--:--:--</span>
+        <button class="fx-toggle" onclick="toggleEffects()" title="Toggle Ambient FX">
+            <i class="fa-solid fa-wand-magic-sparkles" id="fxIcon"></i>
+        </button>
+    </div>
+
     <div class="container">
         <!-- Profile Header Component -->
         <div class="profile-card">
-            <div class="profile-img-container">
+            <div class="profile-img-container" onclick="triggerAvatarEasterEgg()">
                 <img src="https://lh3.googleusercontent.com/d/1ITf_lIgMw0eT00co85vhmKdIJOYjVb_4" alt="Tanveer Hussain Profile Picture">
+                <div class="avatar-ring"></div>
             </div>
             
             <div class="status-badge">
@@ -93,7 +101,7 @@
             <h1 class="profile-name">Tanveer Hussain</h1>
             
             <div class="profile-handle">
-                <i class="fa-solid fa-circle-check"></i> @vexornull
+                <i class="fa-solid fa-code"></i> @vexornull <span class="divider">•</span> <span id="localGreeting">Developer</span>
             </div>
             
             <!-- Quick Action Buttons -->
@@ -110,7 +118,7 @@
         <!-- Real-time Link Search Bar -->
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Search platforms (Press '/' to focus)..." onkeyup="filterLinks()">
+            <input type="text" id="searchInput" placeholder="Search platforms or code (Press '/' to focus)..." onkeyup="filterLinks()">
             <span class="search-shortcut">/</span>
         </div>
 
@@ -119,7 +127,10 @@
             <a href="https://github.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link github" data-name="github">
                 <div class="link-content">
                     <i class="fa-brands fa-github brand-icon"></i>
-                    <span class="link-title">GitHub</span>
+                    <div class="link-text-group">
+                        <span class="link-title">GitHub</span>
+                        <span class="link-subtitle">Repositories & Secrets</span>
+                    </div>
                 </div>
                 <div class="link-right">
                     <span class="badge-action">Codebase</span>
@@ -130,10 +141,13 @@
             <a href="https://linkedin.com/in/vexornull" target="_blank" rel="noopener noreferrer" class="social-link linkedin" data-name="linkedin">
                 <div class="link-content">
                     <i class="fa-brands fa-linkedin-in brand-icon"></i>
-                    <span class="link-title">LinkedIn</span>
+                    <div class="link-text-group">
+                        <span class="link-title">LinkedIn</span>
+                        <span class="link-subtitle">Professional Network</span>
+                    </div>
                 </div>
                 <div class="link-right">
-                    <span class="badge-action">Network</span>
+                    <span class="badge-action">Connect</span>
                     <i class="fa-solid fa-chevron-right link-arrow"></i>
                 </div>
             </a>
@@ -141,7 +155,10 @@
             <a href="https://instagram.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link instagram" data-name="instagram">
                 <div class="link-content">
                     <i class="fa-brands fa-instagram brand-icon"></i>
-                    <span class="link-title">Instagram</span>
+                    <div class="link-text-group">
+                        <span class="link-title">Instagram</span>
+                        <span class="link-subtitle">Visual Updates</span>
+                    </div>
                 </div>
                 <div class="link-right">
                     <span class="badge-action">Follow</span>
@@ -152,7 +169,10 @@
             <a href="https://youtube.com/@vexornull" target="_blank" rel="noopener noreferrer" class="social-link youtube" data-name="youtube">
                 <div class="link-content">
                     <i class="fa-brands fa-youtube brand-icon"></i>
-                    <span class="link-title">YouTube</span>
+                    <div class="link-text-group">
+                        <span class="link-title">YouTube</span>
+                        <span class="link-subtitle">Media & Channels</span>
+                    </div>
                 </div>
                 <div class="link-right">
                     <span class="badge-action">Subscribe</span>
@@ -163,7 +183,10 @@
             <a href="https://wa.me/+923229522470" target="_blank" rel="noopener noreferrer" class="social-link whatsapp" data-name="whatsapp">
                 <div class="link-content">
                     <i class="fa-brands fa-whatsapp brand-icon"></i>
-                    <span class="link-title">WhatsApp</span>
+                    <div class="link-text-group">
+                        <span class="link-title">WhatsApp</span>
+                        <span class="link-subtitle">Secure Messaging</span>
+                    </div>
                 </div>
                 <div class="link-right">
                     <span class="badge-action">Direct Chat</span>
@@ -174,10 +197,13 @@
             <a href="https://facebook.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link facebook" data-name="facebook">
                 <div class="link-content">
                     <i class="fa-brands fa-facebook-f brand-icon"></i>
-                    <span class="link-title">Facebook</span>
+                    <div class="link-text-group">
+                        <span class="link-title">Facebook</span>
+                        <span class="link-subtitle">Community Feed</span>
+                    </div>
                 </div>
                 <div class="link-right">
-                    <span class="badge-action">Connect</span>
+                    <span class="badge-action">Explore</span>
                     <i class="fa-solid fa-chevron-right link-arrow"></i>
                 </div>
             </a>
@@ -185,7 +211,10 @@
             <a href="https://tiktok.com/@vexornull" target="_blank" rel="noopener noreferrer" class="social-link tiktok" data-name="tiktok">
                 <div class="link-content">
                     <i class="fa-brands fa-tiktok brand-icon"></i>
-                    <span class="link-title">TikTok</span>
+                    <div class="link-text-group">
+                        <span class="link-title">TikTok</span>
+                        <span class="link-subtitle">Short Clips</span>
+                    </div>
                 </div>
                 <div class="link-right">
                     <span class="badge-action">Watch</span>
@@ -197,13 +226,13 @@
 
     <!-- Footer Credit -->
     <footer>
-        Designed & Built by <a href="https://Instagram.com/vexornull" target="_blank" rel="noopener noreferrer">Tanveer Hussain</a>
+        Designed & Built with <i class="fa-solid fa-heart" style="color: #ec4899; font-size: 0.75rem;"></i> by <a href="https://Instagram.com/vexornull" target="_blank" rel="noopener noreferrer">Tanveer Hussain</a>
     </footer>
 
     <!-- Toast Alert Notification -->
-    <div id="toast" class="toast">✨ Hub profile link copied to clipboard!</div>
+    <div id="toast" class="toast">✨ Hub profile link copied to clipboard successfully!</div>
 
-    <!-- Linked External JavaScript File -->
+    <!-- Linked JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
