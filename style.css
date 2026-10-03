@@ -42,15 +42,43 @@ body {
     pointer-events: none;
 }
 
-/* Subtle Tech Grid Pattern */
+/* RGB Glowing Animated Grid Boxes */
 .cyber-grid {
     position: fixed;
     inset: 0;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-    background-size: 32px 32px;
+    background-image: 
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
     z-index: -2;
     pointer-events: none;
+    overflow: hidden;
+}
+
+/* Moving RGB Light Beams across the boxes */
+.cyber-grid::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(
+        from 0deg at 50% 50%,
+        transparent 0deg,
+        rgba(99, 102, 241, 0.15) 90deg,
+        rgba(236, 72, 153, 0.15) 180deg,
+        rgba(56, 189, 248, 0.15) 270deg,
+        transparent 360deg
+    );
+    animation: rotateRGBGrid 15s linear infinite;
+    transform: translateZ(0);
+}
+
+@keyframes rotateRGBGrid {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Stable Ambient Glows */
@@ -380,19 +408,4 @@ footer a:hover {
     visibility: visible;
     opacity: 1;
     bottom: 30px;
-}
-/* Book-Inspired Grid & Page Lines Background */
-.cyber-grid {
-    position: fixed;
-    inset: 0;
-    background-image: 
-        /* Vertical lines representing book spine / vertical pages */
-        linear-gradient(90deg, rgba(99, 102, 241, 0.04) 1px, transparent 1px),
-        /* Horizontal lines representing notebook lines */
-        linear-gradient(0deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        /* Central spine highlight for a 3D book feel */
-        linear-gradient(90deg, transparent 48%, rgba(129, 140, 248, 0.05) 50%, transparent 52%);
-    background-size: 60px 40px, 100% 24px, 100% 100%;
-    z-index: -2;
-    pointer-events: none;
 }
