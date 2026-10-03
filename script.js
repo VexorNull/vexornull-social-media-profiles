@@ -103,10 +103,11 @@ function toggleEffects() {
 // Avatar Easter Egg Click
 function triggerAvatarEasterEgg() {
     const statuses = [
-        "System Online • Verified Hub",
-        "Executing Clean Code...",
-        "Deploying to Vercel...",
-        "Always Building & Learning 🚀"
+        "Bro, chill! You're gonna break the screen.",
+        "Easy there, man. I'm not an ATM.",
+        "Relax, bro. Admiring the profile is enough!",
+        "Bro really thinks clicking faster unlocks a cheat code.",
+        "Take it easy, man. Let the server breathe."
     ];
     const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
     document.getElementById('statusText').textContent = randomStatus;
