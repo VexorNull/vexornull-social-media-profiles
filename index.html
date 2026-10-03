@@ -71,18 +71,17 @@
 </head>
 <body>
 
-    <!-- Cyber Background Layers & RGB Grid -->
-    <div class="bg-gradient-layer" id="bgLayer"></div>
+    <!-- Interactive Cursor Spotlight & Background Layers -->
+    <div class="mouse-spotlight" id="mouseSpotlight"></div>
+    <div class="space-vignette"></div>
     <div class="cyber-grid"></div>
-    <div class="ambient-glow glow-1"></div>
-    <div class="ambient-glow glow-2"></div>
 
     <!-- Floating Top Telemetry Bar -->
     <div class="telemetry-bar">
-        <span class="tele-item"><i class="fa-solid fa-terminal"></i> v2.6.0-stable</span>
+        <span class="tele-item"><i class="fa-solid fa-signal" style="color: #34d399;"></i> <span id="pingRate">12ms</span></span>
         <span class="tele-item" id="liveClock">--:--:--</span>
-        <button class="fx-toggle" onclick="toggleEffects()" title="Toggle Ambient FX">
-            <i class="fa-solid fa-wand-magic-sparkles" id="fxIcon"></i>
+        <button class="fx-toggle" onclick="toggleEffects()" title="Toggle Matrix FX">
+            <i class="fa-solid fa-cube" id="fxIcon"></i>
         </button>
     </div>
 
@@ -226,7 +225,7 @@
 
     <!-- Footer Credit -->
     <footer>
-        Designed & Built with <i class="fa-solid fa-heart" style="color: #ec4899; font-size: 0.75rem;"></i> by <a href="https://Instagram.com/vexornull" target="_blank" rel="noopener noreferrer">Tanveer Hussain</a>
+        Designed & Built with <i class="fa-solid fa-heart" style="color: #6366f1; font-size: 0.75rem;"></i> by <a href="https://Instagram.com/vexornull" target="_blank" rel="noopener noreferrer">Tanveer Hussain</a>
     </footer>
 
     <!-- Toast Alert Notification -->
