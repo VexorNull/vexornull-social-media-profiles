@@ -381,3 +381,18 @@ footer a:hover {
     opacity: 1;
     bottom: 30px;
 }
+/* Book-Inspired Grid & Page Lines Background */
+.cyber-grid {
+    position: fixed;
+    inset: 0;
+    background-image: 
+        /* Vertical lines representing book spine / vertical pages */
+        linear-gradient(90deg, rgba(99, 102, 241, 0.04) 1px, transparent 1px),
+        /* Horizontal lines representing notebook lines */
+        linear-gradient(0deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        /* Central spine highlight for a 3D book feel */
+        linear-gradient(90deg, transparent 48%, rgba(129, 140, 248, 0.05) 50%, transparent 52%);
+    background-size: 60px 40px, 100% 24px, 100% 100%;
+    z-index: -2;
+    pointer-events: none;
+}
