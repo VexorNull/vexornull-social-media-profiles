@@ -7,7 +7,7 @@ document.addEventListener('mousemove', (e) => {
     }
 });
 
-// Real-time Clock & Dynamic Greeting & Ping Simulator
+// Telemetry & Dynamic Clock
 function updateTelemetry() {
     const now = new Date();
     const timeString = now.toTimeString().split(' ')[0];
@@ -28,7 +28,7 @@ function updateTelemetry() {
         greetingEl.textContent = greeting;
     }
 
-    // Randomize ping slightly for realistic infrastructure telemetry
+    // Ping Simulator
     const pingEl = document.getElementById('pingRate');
     if (pingEl && Math.random() > 0.7) {
         const randomPing = Math.floor(Math.random() * 8) + 10;
@@ -38,18 +38,26 @@ function updateTelemetry() {
 setInterval(updateTelemetry, 1000);
 updateTelemetry();
 
-// Copy Profile Link Handler
+// Copy Profile Link
 function copyProfileLink() {
     navigator.clipboard.writeText(window.location.href).then(() => {
-        showToast();
+        showToast("✨ Hub profile link copied to clipboard!");
     }).catch(err => {
         console.error('Failed to copy: ', err);
     });
 }
 
+// Copy Handle Functionality
+function copyHandle() {
+    navigator.clipboard.writeText('@vexornull').then(() => {
+        showToast("✨ Handle @vexornull copied!");
+    });
+}
+
 // Toast Controller
-function showToast() {
+function showToast(message) {
     const toast = document.getElementById("toast");
+    if (message) toast.textContent = message;
     toast.className = "toast show";
     setTimeout(() => {
         toast.className = toast.className.replace("show", "");
@@ -62,18 +70,27 @@ function filterLinks() {
     const filter = input.value.toLowerCase();
     const linksList = document.getElementById('linksList');
     const links = linksList.getElementsByClassName('social-link');
+    const noResults = document.getElementById('noResults');
+
+    let visibleCount = 0;
 
     for (let i = 0; i < links.length; i++) {
-        const title = links[i].getAttribute('data-name');
-        if (title.indexOf(filter) > -1) {
+        const nameAttr = links[i].getAttribute('data-name') || '';
+        if (nameAttr.toLowerCase().indexOf(filter) > -1) {
             links[i].style.display = "";
+            visibleCount++;
         } else {
             links[i].style.display = "none";
         }
     }
+
+    // Toggle No Results Fallback
+    if (noResults) {
+        noResults.style.display = visibleCount === 0 ? "block" : "none";
+    }
 }
 
-// Keyboard shortcut: Press '/' anywhere to focus search
+// Focus Search on '/' Keypress
 document.addEventListener('keydown', function(event) {
     if (event.key === '/' && document.activeElement.tagName !== 'INPUT') {
         event.preventDefault();
@@ -82,7 +99,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Toggle Matrix Grid Rotation Engine
+// Matrix FX Toggle
 let fxActive = true;
 function toggleEffects() {
     fxActive = !fxActive;
@@ -95,12 +112,12 @@ function toggleEffects() {
         icon.className = "fa-solid fa-cube";
     } else {
         grid.style.animationPlayState = "paused";
-        grid.style.opacity = "0.25";
+        grid.style.opacity = "0.2";
         icon.className = "fa-solid fa-cube fa-fade";
     }
 }
 
-// Avatar Easter Egg Click
+// Interactive Avatar Easter Egg
 function triggerAvatarEasterEgg() {
     const statuses = [
         "Bro, chill! You're gonna break the screen.",
@@ -111,4 +128,21 @@ function triggerAvatarEasterEgg() {
     ];
     const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
     document.getElementById('statusText').textContent = randomStatus;
+}
+
+// QR Code Modal Functions
+function openQrModal() {
+    const modal = document.getElementById('qrModal');
+    const qrImg = document.getElementById('qrImage');
+    const currentUrl = encodeURIComponent(window.location.href);
+    
+    // Dynamic QR generation API
+    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${currentUrl}`;
+    modal.classList.add('active');
+}
+
+function closeQrModal(event) {
+    if (event.target.classList.contains('modal-overlay') || event.target.closest('.modal-close')) {
+        document.getElementById('qrModal').classList.remove('active');
+    }
 }
