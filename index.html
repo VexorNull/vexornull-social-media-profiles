@@ -99,7 +99,7 @@
 
             <h1 class="profile-name">Tanveer Hussain</h1>
             
-            <div class="profile-handle">
+            <div class="profile-handle" onclick="copyHandle()" title="Click to copy handle">
                 <i class="fa-solid fa-code"></i> @vexornull <span class="divider">•</span> <span id="localGreeting">Developer</span>
             </div>
             
@@ -108,8 +108,11 @@
                 <button class="btn-action" onclick="copyProfileLink()">
                     <i class="fa-solid fa-share-nodes"></i> Share Hub
                 </button>
+                <button class="btn-action" onclick="openQrModal()">
+                    <i class="fa-solid fa-qrcode"></i> Scan QR
+                </button>
                 <a href="mailto:inquiry.iconnect.social@gmail.com" class="btn-action">
-                    <i class="fa-solid fa-envelope"></i> Email Me
+                    <i class="fa-solid fa-envelope"></i> Email
                 </a>
             </div>
         </div>
@@ -117,18 +120,18 @@
         <!-- Real-time Link Search Bar -->
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Search platforms or code (Press '/' to focus)..." onkeyup="filterLinks()">
+            <input type="text" id="searchInput" placeholder="Search platforms (Press '/' to focus)..." onkeyup="filterLinks()">
             <span class="search-shortcut">/</span>
         </div>
 
         <!-- Social Media Links Directory -->
         <div class="links-list" id="linksList">
-            <a href="https://github.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link github" data-name="github">
+            <a href="https://github.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link github" data-name="github repositories code">
                 <div class="link-content">
                     <i class="fa-brands fa-github brand-icon"></i>
                     <div class="link-text-group">
                         <span class="link-title">GitHub</span>
-                        <span class="link-subtitle">Repositories & Secrets</span>
+                        <span class="link-subtitle">Repositories & Code base</span>
                     </div>
                 </div>
                 <div class="link-right">
@@ -137,7 +140,7 @@
                 </div>
             </a>
 
-            <a href="https://linkedin.com/in/vexornull" target="_blank" rel="noopener noreferrer" class="social-link linkedin" data-name="linkedin">
+            <a href="https://linkedin.com/in/vexornull" target="_blank" rel="noopener noreferrer" class="social-link linkedin" data-name="linkedin professional network jobs">
                 <div class="link-content">
                     <i class="fa-brands fa-linkedin-in brand-icon"></i>
                     <div class="link-text-group">
@@ -151,12 +154,12 @@
                 </div>
             </a>
 
-            <a href="https://instagram.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link instagram" data-name="instagram">
+            <a href="https://instagram.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link instagram" data-name="instagram photos reels visual updates">
                 <div class="link-content">
                     <i class="fa-brands fa-instagram brand-icon"></i>
                     <div class="link-text-group">
                         <span class="link-title">Instagram</span>
-                        <span class="link-subtitle">Visual Updates</span>
+                        <span class="link-subtitle">Visual Updates & Reels</span>
                     </div>
                 </div>
                 <div class="link-right">
@@ -165,12 +168,12 @@
                 </div>
             </a>
 
-            <a href="https://youtube.com/@vexornull" target="_blank" rel="noopener noreferrer" class="social-link youtube" data-name="youtube">
+            <a href="https://youtube.com/@vexornull" target="_blank" rel="noopener noreferrer" class="social-link youtube" data-name="youtube videos media channels">
                 <div class="link-content">
                     <i class="fa-brands fa-youtube brand-icon"></i>
                     <div class="link-text-group">
                         <span class="link-title">YouTube</span>
-                        <span class="link-subtitle">Media & Channels</span>
+                        <span class="link-subtitle">Tech Videos & Channels</span>
                     </div>
                 </div>
                 <div class="link-right">
@@ -179,12 +182,12 @@
                 </div>
             </a>
 
-            <a href="https://wa.me/+923229522470" target="_blank" rel="noopener noreferrer" class="social-link whatsapp" data-name="whatsapp">
+            <a href="https://wa.me/+923229522470" target="_blank" rel="noopener noreferrer" class="social-link whatsapp" data-name="whatsapp chat direct contact message">
                 <div class="link-content">
                     <i class="fa-brands fa-whatsapp brand-icon"></i>
                     <div class="link-text-group">
                         <span class="link-title">WhatsApp</span>
-                        <span class="link-subtitle">Secure Messaging</span>
+                        <span class="link-subtitle">Direct Fast Messaging</span>
                     </div>
                 </div>
                 <div class="link-right">
@@ -193,12 +196,12 @@
                 </div>
             </a>
 
-            <a href="https://facebook.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link facebook" data-name="facebook">
+            <a href="https://facebook.com/vexornull" target="_blank" rel="noopener noreferrer" class="social-link facebook" data-name="facebook community feed posts">
                 <div class="link-content">
                     <i class="fa-brands fa-facebook-f brand-icon"></i>
                     <div class="link-text-group">
                         <span class="link-title">Facebook</span>
-                        <span class="link-subtitle">Community Feed</span>
+                        <span class="link-subtitle">Community & Posts</span>
                     </div>
                 </div>
                 <div class="link-right">
@@ -207,12 +210,12 @@
                 </div>
             </a>
 
-            <a href="https://tiktok.com/@vexornull" target="_blank" rel="noopener noreferrer" class="social-link tiktok" data-name="tiktok">
+            <a href="https://tiktok.com/@vexornull" target="_blank" rel="noopener noreferrer" class="social-link tiktok" data-name="tiktok short clips videos">
                 <div class="link-content">
                     <i class="fa-brands fa-tiktok brand-icon"></i>
                     <div class="link-text-group">
                         <span class="link-title">TikTok</span>
-                        <span class="link-subtitle">Short Clips</span>
+                        <span class="link-subtitle">Short Tech Clips</span>
                     </div>
                 </div>
                 <div class="link-right">
@@ -220,12 +223,30 @@
                     <i class="fa-solid fa-chevron-right link-arrow"></i>
                 </div>
             </a>
+
+            <!-- Fallback No Results Message -->
+            <div id="noResults" class="no-results" style="display: none;">
+                <i class="fa-solid fa-ghost"></i>
+                <p>No platform matching your query found.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div id="qrModal" class="modal-overlay" onclick="closeQrModal(event)">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeQrModal(event)"><i class="fa-solid fa-xmark"></i></button>
+            <h3>Scan Hub QR</h3>
+            <p>Scan with your phone camera to open this profile on mobile.</p>
+            <div class="qr-box">
+                <img id="qrImage" src="" alt="Profile QR Code">
+            </div>
         </div>
     </div>
 
     <!-- Footer Credit -->
     <footer>
-        Designed & Built with <i class="fa-solid fa-heart" style="color: #6366f1; font-size: 0.75rem;"></i> by <a href="https://Instagram.com/vexornull" target="_blank" rel="noopener noreferrer">Tanveer Hussain</a>
+        Designed & Built with <i class="fa-solid fa-heart" style="color: #6366f1; font-size: 0.75rem;"></i> by <a href="https://instagram.com/vexornull" target="_blank" rel="noopener noreferrer">Tanveer Hussain</a>
     </footer>
 
     <!-- Toast Alert Notification -->
