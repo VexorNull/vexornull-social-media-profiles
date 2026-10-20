@@ -387,6 +387,14 @@ body {
 .social-link.tiktok .brand-icon { color: #00f2fe; }
 .social-link.linkedin .brand-icon { color: #0a66c2; }
 
+/* Naye Links ke Brand Colors */
+.social-link.website .brand-icon { color: #38bdf8; }
+.social-link.portfolio .brand-icon { color: #818cf8; }
+.social-link.blog .brand-icon { color: #f97316; }
+.social-link.live-coding .brand-icon { color: #10b981; }
+.social-link.goto-url .brand-icon { color: #ec4899; }
+.social-link.secret-speaks .brand-icon { color: #a855f7; }
+
 .link-right {
     display: flex;
     align-items: center;
