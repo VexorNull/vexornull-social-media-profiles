@@ -69,50 +69,69 @@
     <!-- Linked CSS -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Realistic Audio Wave / Blinking Ring Animation Styles -->
+    <!-- Strict Rhythm-Matched Visualizer Styles -->
     <style>
-        /* Profile Image Container Styling for Absolute Positioning of Ring */
+        /* Profile Image Container Styling */
         .profile-img-container {
             position: relative;
             display: inline-block;
         }
 
-        /* Avatar Ring ko bilkul image ke border par center karne ke liye */
+        /* Primary Core Ring - Exact base fit with instant transient snap */
         .avatar-ring {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
             border-radius: 50%;
             pointer-events: none;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
+            border: 2px solid rgba(56, 189, 248, 0.5);
+            transition: transform 0.01s cubic-bezier(0, 0.8, 0.2, 1), box-shadow 0.01s ease-out, border-color 0.15s ease;
+            will-change: transform, box-shadow, border-color;
+            z-index: 3;
         }
 
-        @keyframes realisticMusicPulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.8), 0 0 0 0 rgba(99, 102, 241, 0.6);
-                transform: scale(1);
-            }
-            30% {
-                box-shadow: 0 0 0 8px rgba(52, 211, 153, 0.4), 0 0 0 16px rgba(99, 102, 241, 0.2);
-                transform: scale(1.02);
-            }
-            60% {
-                box-shadow: 0 0 0 14px rgba(52, 211, 153, 0.15), 0 0 0 26px rgba(99, 102, 241, 0.08);
-                transform: scale(1.04);
-            }
-            100% {
-                box-shadow: 0 0 0 20px rgba(52, 211, 153, 0), 0 0 0 36px rgba(99, 102, 241, 0);
-                transform: scale(1);
-            }
+        /* Secondary Rhythm Echo Ring */
+        .avatar-ring-echo {
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border-radius: 50%;
+            pointer-events: none;
+            border: 1px dashed rgba(168, 85, 247, 0.4);
+            transition: transform 0.02s cubic-bezier(0, 0.8, 0.2, 1), opacity 0.02s ease-out;
+            will-change: transform, opacity;
+            z-index: 2;
+            opacity: 0;
         }
 
-        /* Jab music play ho raha hoga tab yeh realistic border pulse effect chalega */
+        /* Ambient Pulse Aura */
+        .avatar-ring-aura {
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            right: -12px;
+            bottom: -12px;
+            border-radius: 50%;
+            pointer-events: none;
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            transition: transform 0.03s ease-out, opacity 0.03s ease-out;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        /* Active Rhythm States */
         .avatar-ring.playing {
-            animation: realisticMusicPulse 1.2s infinite cubic-bezier(0.4, 0, 0.6, 1);
-            border-color: #34d399 !important;
+            border-color: #38bdf8;
+        }
+        .avatar-ring-echo.playing {
+            opacity: 0.75;
+        }
+        .avatar-ring-aura.playing {
+            opacity: 0.4;
         }
     </style>
 </head>
@@ -133,8 +152,8 @@
         </button>
     </div>
 
-    <!-- Hidden Background Audio Player -->
-    <audio id="bgMusic" autoplay loop style="display: none;">
+    <!-- Hidden Background Audio Player (CORS enabled for spectrum analysis) -->
+    <audio id="bgMusic" autoplay loop crossorigin="anonymous" style="display: none;">
         <source src="https://files.catbox.moe/kxza27.mp3" type="audio/mpeg">
         Aapka browser audio element support nahi karta.
     </audio>
@@ -145,6 +164,8 @@
             <div class="profile-img-container" onclick="triggerAvatarEasterEgg()">
                 <img src="https://lh3.googleusercontent.com/d/1-fPr7XfHeQTmKaBiiwV8dVDHJNXVMtHh" alt="Tanveer Hussain Profile Picture">
                 <div class="avatar-ring" id="avatarRing"></div>
+                <div class="avatar-ring-echo" id="avatarRingEcho"></div>
+                <div class="avatar-ring-aura" id="avatarRingAura"></div>
             </div>
             
             <div class="status-badge">
@@ -370,39 +391,150 @@
     <!-- Toast Alert Notification -->
     <div id="toast" class="toast">✨ Hub profile link copied to clipboard successfully!</div>
 
-    <!-- Linked JavaScript & Realistic Audio Visualizer Logic -->
+    <!-- Linked External Script -->
     <script src="script.js"></script>
+
+    <!-- Instant Rhythm-Matched Audio Visualizer Script -->
     <script>
         const audio = document.getElementById('bgMusic');
         const avatarRing = document.getElementById('avatarRing');
+        const avatarRingEcho = document.getElementById('avatarRingEcho');
+        const avatarRingAura = document.getElementById('avatarRingAura');
 
-        // Jab gaana play ho toh realistic multi-layer pulse effect shuru ho jaye
+        let audioCtx, analyser, dataArray, source, isAudioInitialized = false;
+        let currentScale = 1;
+        let currentEchoScale = 1;
+        let currentAuraScale = 1;
+
+        function initAudioVisualizer() {
+            if (isAudioInitialized) return;
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContext();
+                
+                analyser = audioCtx.createAnalyser();
+                source = audioCtx.createMediaElementSource(audio);
+                
+                source.connect(analyser);
+                analyser.connect(audioCtx.destination);
+                
+                // Fast FFT size and low smoothing for zero-lag rhythm match
+                analyser.fftSize = 128;
+                analyser.smoothingTimeConstant = 0.25; 
+                
+                const bufferLength = analyser.frequencyBinCount;
+                dataArray = new Uint8Array(bufferLength);
+                
+                isAudioInitialized = true;
+                visualizeRhythmSync();
+            } catch (e) {
+                console.log("Audio Context initialization error:", e);
+            }
+        }
+
+        function visualizeRhythmSync() {
+            if (!audio.paused && analyser) {
+                analyser.getByteFrequencyData(dataArray);
+                
+                // Target exact bass/kick frequency bins (0 to 4) for direct rhythm match
+                let bassSum = 0;
+                let bassRange = 4;
+                for (let i = 0; i < bassRange; i++) {
+                    bassSum += dataArray[i];
+                }
+                let bassAvg = bassSum / bassRange;
+                
+                // Mid frequencies for color shift
+                let midSum = 0;
+                for (let i = 8; i < 20; i++) {
+                    midSum += dataArray[i];
+                }
+                let midAvg = midSum / 12;
+
+                // Direct responsive scaling (Instant snap on beat hit, quick recovery)
+                let targetScale = 1 + (bassAvg / 255) * 0.16;
+                let targetEchoScale = 1 + (bassAvg / 255) * 0.24;
+                let targetAuraScale = 1 + (bassAvg / 255) * 0.32;
+
+                // Fast attack, smooth decay (Ensures exact beat alignment)
+                let attackFactor = 0.7; // Fast jump
+                let decayFactor = 0.25;  // Smooth return
+
+                currentScale += (targetScale - currentScale) * (targetScale > currentScale ? attackFactor : decayFactor);
+                currentEchoScale += (targetEchoScale - currentEchoScale) * (targetEchoScale > currentEchoScale ? attackFactor : decayFactor);
+                currentAuraScale += (targetAuraScale - currentAuraScale) * (targetAuraScale > currentAuraScale ? attackFactor : decayFactor);
+
+                // Aesthetic Electric Cyan & Violet Color Sync
+                let red = Math.floor(56 + (midAvg / 255) * 90);
+                let green = Math.floor(189 - (midAvg / 255) * 60);
+                let blue = Math.floor(248);
+                let rhythmColor = `rgb(${red}, ${green}, ${blue})`;
+
+                let shadowBlur = 6 + (bassAvg / 255) * 22;
+                let opacity = 0.5 + (bassAvg / 255) * 0.5;
+
+                // Apply to Core Ring
+                avatarRing.style.transform = `scale(${currentScale})`;
+                avatarRing.style.borderColor = rhythmColor;
+                avatarRing.style.boxShadow = `
+                    0 0 ${shadowBlur}px rgba(${red}, ${green}, ${blue}, ${opacity}), 
+                    0 0 ${shadowBlur * 1.5}px rgba(168, 85, 247, ${opacity * 0.6}),
+                    inset 0 0 ${shadowBlur * 0.3}px rgba(${red}, ${green}, ${blue}, ${opacity * 0.5})
+                `;
+                avatarRing.classList.add('playing');
+
+                // Apply to Echo Ring
+                avatarRingEcho.style.transform = `scale(${currentEchoScale})`;
+                avatarRingEcho.style.borderColor = `rgba(168, 85, 247, ${opacity * 0.7})`;
+                avatarRingEcho.classList.add('playing');
+
+                // Apply to Aura
+                avatarRingAura.style.transform = `scale(${currentAuraScale})`;
+                avatarRingAura.style.borderColor = `rgba(${red}, ${green}, ${blue}, ${opacity * 0.35})`;
+                avatarRingAura.classList.add('playing');
+            } else {
+                currentScale += (1 - currentScale) * 0.1;
+                currentEchoScale += (1 - currentEchoScale) * 0.1;
+                currentAuraScale += (1 - currentAuraScale) * 0.1;
+
+                avatarRing.style.transform = `scale(${currentScale})`;
+                avatarRing.style.boxShadow = 'none';
+                avatarRing.style.borderColor = 'rgba(56, 189, 248, 0.5)';
+                avatarRing.classList.remove('playing');
+
+                avatarRingEcho.style.transform = `scale(${currentEchoScale})`;
+                avatarRingEcho.classList.remove('playing');
+
+                avatarRingAura.style.transform = `scale(${currentAuraScale})`;
+                avatarRingAura.classList.remove('playing');
+            }
+            
+            requestAnimationFrame(visualizeRhythmSync);
+        }
+
         audio.addEventListener('play', () => {
-            avatarRing.classList.add('playing');
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            initAudioVisualizer();
         });
 
-        // Jab gaana pause ho toh animation ruk jaye
-        audio.addEventListener('pause', () => {
-            avatarRing.classList.remove('playing');
-        });
-
-        // Page load hotay hi autoplay trigger aur animation start karna
         window.addEventListener('DOMContentLoaded', () => {
             audio.volume = 0.8;
             audio.play().then(() => {
-                avatarRing.classList.add('playing');
-            }).catch(error => {
-                console.log("Autoplay blocked by browser policy. Will play on user click.");
-                avatarRing.classList.remove('playing');
+                initAudioVisualizer();
+            }).catch(() => {
+                console.log("Autoplay waiting for user interaction.");
             });
         });
 
-        // Modern browsers ki autoplay restriction ko handle karne ke liye user click listener
         document.body.addEventListener('click', function once() {
             if (audio.paused) {
                 audio.play().then(() => {
-                    avatarRing.classList.add('playing');
+                    initAudioVisualizer();
                 });
+            } else if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
             }
         }, { once: true });
     </script>
