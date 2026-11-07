@@ -68,6 +68,53 @@
 
     <!-- Linked CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Realistic Audio Wave / Blinking Ring Animation Styles -->
+    <style>
+        /* Profile Image Container Styling for Absolute Positioning of Ring */
+        .profile-img-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Avatar Ring ko bilkul image ke border par center karne ke liye */
+        .avatar-ring {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes realisticMusicPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.8), 0 0 0 0 rgba(99, 102, 241, 0.6);
+                transform: scale(1);
+            }
+            30% {
+                box-shadow: 0 0 0 8px rgba(52, 211, 153, 0.4), 0 0 0 16px rgba(99, 102, 241, 0.2);
+                transform: scale(1.02);
+            }
+            60% {
+                box-shadow: 0 0 0 14px rgba(52, 211, 153, 0.15), 0 0 0 26px rgba(99, 102, 241, 0.08);
+                transform: scale(1.04);
+            }
+            100% {
+                box-shadow: 0 0 0 20px rgba(52, 211, 153, 0), 0 0 0 36px rgba(99, 102, 241, 0);
+                transform: scale(1);
+            }
+        }
+
+        /* Jab music play ho raha hoga tab yeh realistic border pulse effect chalega */
+        .avatar-ring.playing {
+            animation: realisticMusicPulse 1.2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+            border-color: #34d399 !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -86,12 +133,18 @@
         </button>
     </div>
 
+    <!-- Hidden Background Audio Player -->
+    <audio id="bgMusic" autoplay loop style="display: none;">
+        <source src="https://files.catbox.moe/kxza27.mp3" type="audio/mpeg">
+        Aapka browser audio element support nahi karta.
+    </audio>
+
     <div class="container">
         <!-- Profile Header Component -->
         <div class="profile-card">
             <div class="profile-img-container" onclick="triggerAvatarEasterEgg()">
                 <img src="https://lh3.googleusercontent.com/d/1-fPr7XfHeQTmKaBiiwV8dVDHJNXVMtHh" alt="Tanveer Hussain Profile Picture">
-                <div class="avatar-ring"></div>
+                <div class="avatar-ring" id="avatarRing"></div>
             </div>
             
             <div class="status-badge">
@@ -128,81 +181,83 @@
         <!-- Social Media Links Directory -->
         <div class="links-list" id="linksList">
             <a href="https://secret-speaks.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link secret-speaks" data-name="secret speaks anonymous messaging web app">
-    <div class="link-content">
-        <i class="fa-solid fa-user-secret brand-icon"></i>
-        <div class="link-text-group">
-            <span class="link-title">Secret Speaks</span>
-            <span class="link-subtitle">Anonymous Messaging App</span>
-        </div>
-    </div>
-    <div class="link-action">
-        <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
-    </div>
-</a>
+                <div class="link-content">
+                    <i class="fa-solid fa-user-secret brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">Secret Speaks</span>
+                        <span class="link-subtitle">Anonymous Messaging App</span>
+                    </div>
+                </div>
+                <div class="link-action">
+                    <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
+                </div>
+            </a>
 
-<a href="https://goto-url.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link goto-url" data-name="goto url shortener website">
-    <div class="link-content">
-        <i class="fa-solid fa-link brand-icon"></i>
-        <div class="link-text-group">
-            <span class="link-title">GoTo URL</span>
-            <span class="link-subtitle">URL Shortener & Link Tools</span>
-        </div>
-    </div>
-    <div class="link-action">
-        <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
-    </div>
-</a>
+            <a href="https://goto-url.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link goto-url" data-name="goto url shortener website">
+                <div class="link-content">
+                    <i class="fa-solid fa-link brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">GoTo URL</span>
+                        <span class="link-subtitle">URL Shortener & Link Tools</span>
+                    </div>
+                </div>
+                <div class="link-action">
+                    <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
+                </div>
+            </a>
 
-<a href="https://live-coding-with-vexornull.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link live-coding" data-name="live coding with vexornull website">
-    <div class="link-content">
-        <i class="fa-solid fa-laptop-code brand-icon"></i>
-        <div class="link-text-group">
-            <span class="link-title">Live Coding</span>
-            <span class="link-subtitle">Live Coding with Vexornull</span>
-        </div>
-    </div>
-    <div class="link-action">
-        <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
-    </div>
-</a>
+            <a href="https://live-coding-with-vexornull.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link live-coding" data-name="live coding with vexornull website">
+                <div class="link-content">
+                    <i class="fa-solid fa-laptop-code brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">Live Coding</span>
+                        <span class="link-subtitle">Live Coding with Vexornull</span>
+                    </div>
+                </div>
+                <div class="link-action">
+                    <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
+                </div>
+            </a>
             
-<a href="https://pk-digitalhub.blogspot.com/" target="_blank" rel="noopener noreferrer" class="social-link blog" data-name="pk digital hub blog">
-    <div class="link-content">
-        <i class="fa-brands fa-blogger-b brand-icon"></i>
-        <div class="link-text-group">
-            <span class="link-title">Blog</span>
-            <span class="link-subtitle">PK Digital Hub</span>
-        </div>
-    </div>
-    <div class="link-action">
-        <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
-    </div>
-</a>
+            <a href="https://pk-digitalhub.blogspot.com/" target="_blank" rel="noopener noreferrer" class="social-link blog" data-name="pk digital hub blog">
+                <div class="link-content">
+                    <i class="fa-brands fa-blogger-b brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">Blog</span>
+                        <span class="link-subtitle">PK Digital Hub</span>
+                    </div>
+                </div>
+                <div class="link-action">
+                    <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
+                </div>
+            </a>
             
-          <a href="https://tanveer-hussain-cms.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link portfolio" data-name="tanveer hussain cms website">
-    <div class="link-content">
-        <i class="fa-solid fa-code brand-icon"></i>
-        <div class="link-text-group">
-            <span class="link-title">Portfolio / CMS</span>
-            <span class="link-subtitle">Tanveer Hussain CMS</span>
-        </div>
-    </div>
-    <div class="link-action">
-        <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
-    </div>
-</a>
+            <a href="https://tanveer-hussain-cms.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link portfolio" data-name="tanveer hussain cms website">
+                <div class="link-content">
+                    <i class="fa-solid fa-code brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">Portfolio / CMS</span>
+                        <span class="link-subtitle">Tanveer Hussain CMS</span>
+                    </div>
+                </div>
+                <div class="link-action">
+                    <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
+                </div>
+            </a>
+
             <a href="https://stylish-font-with-vexornull.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-link website" data-name="stylish font generator website">
-    <div class="link-content">
-        <i class="fa-solid fa-globe brand-icon"></i>
-        <div class="link-text-group">
-            <span class="link-title">Website</span>
-            <span class="link-subtitle">Stylish Font Generator</span>
-        </div>
-    </div>
-    <div class="link-action">
-        <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
-    </div>
-</a>
+                <div class="link-content">
+                    <i class="fa-solid fa-globe brand-icon"></i>
+                    <div class="link-text-group">
+                        <span class="link-title">Website</span>
+                        <span class="link-subtitle">Stylish Font Generator</span>
+                    </div>
+                </div>
+                <div class="link-action">
+                    <i class="fa-solid fa-arrow-up-right-from-square action-icon"></i>
+                </div>
+            </a>
+
             <a href="https://linkedin.com/in/vexornull" target="_blank" rel="noopener noreferrer" class="social-link linkedin" data-name="linkedin professional network jobs">
                 <div class="link-content">
                     <i class="fa-brands fa-linkedin-in brand-icon"></i>
@@ -315,7 +370,41 @@
     <!-- Toast Alert Notification -->
     <div id="toast" class="toast">✨ Hub profile link copied to clipboard successfully!</div>
 
-    <!-- Linked JavaScript -->
+    <!-- Linked JavaScript & Realistic Audio Visualizer Logic -->
     <script src="script.js"></script>
+    <script>
+        const audio = document.getElementById('bgMusic');
+        const avatarRing = document.getElementById('avatarRing');
+
+        // Jab gaana play ho toh realistic multi-layer pulse effect shuru ho jaye
+        audio.addEventListener('play', () => {
+            avatarRing.classList.add('playing');
+        });
+
+        // Jab gaana pause ho toh animation ruk jaye
+        audio.addEventListener('pause', () => {
+            avatarRing.classList.remove('playing');
+        });
+
+        // Page load hotay hi autoplay trigger aur animation start karna
+        window.addEventListener('DOMContentLoaded', () => {
+            audio.volume = 0.8;
+            audio.play().then(() => {
+                avatarRing.classList.add('playing');
+            }).catch(error => {
+                console.log("Autoplay blocked by browser policy. Will play on user click.");
+                avatarRing.classList.remove('playing');
+            });
+        });
+
+        // Modern browsers ki autoplay restriction ko handle karne ke liye user click listener
+        document.body.addEventListener('click', function once() {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    avatarRing.classList.add('playing');
+                });
+            }
+        }, { once: true });
+    </script>
 </body>
 </html>
